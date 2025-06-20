@@ -21,5 +21,5 @@ def mapa():
     except Exception as e:
         return jsonify({'erro': str(e)}), 500
 
-if _name_ == '_main_':
+if __name__ == '_main_':
     app.run(debug=True)
