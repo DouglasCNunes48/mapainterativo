@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from mapa_gerador import gerar_mapa_por_latlng
 
-app = Flask(__name__)
+app = Flask(_ _name_ _)
 
 @app.route('/')
 def home():
