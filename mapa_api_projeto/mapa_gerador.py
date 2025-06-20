@@ -2,7 +2,7 @@ import folium
 import os
 import requests
 
-API_KEY = 'SUA_CHAVE_GOOGLE'
+API_KEY = 'AIzaSyCPvECzMlL0etMn7s4X_SVXBRA2c4ypXEE'
 
 def buscar_restaurantes(lat, lng, raio):
     url = (
