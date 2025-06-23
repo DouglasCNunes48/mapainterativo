@@ -37,5 +37,4 @@ def gerar(localizacao: Localizacao):
 
     return {
         "mensagem": "Mapa publicado com sucesso!",
-        "url": "https://douglascnunes48.github.io/mapainterativo/mapa.html"
- }
+        "url": "https://douglascnunes48.github.io/mapainterativo/mapa.html"}
