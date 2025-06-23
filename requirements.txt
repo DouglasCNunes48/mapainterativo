@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+folium
+requests
+PyGithub
