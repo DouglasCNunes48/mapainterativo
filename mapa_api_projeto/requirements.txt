@@ -1,6 +1,5 @@
-Flask
-requests
-pandas
-openpyxl
+fastapi
+uvicorn
 folium
-gunicorn
+requests
+PyGithub
