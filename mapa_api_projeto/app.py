@@ -1,25 +1,34 @@
-from flask import Flask, request, jsonify
-from mapa_gerador import gerar_mapa_por_latlng
+from fastapi import FastAPI
+from pydantic import BaseModel
+from mapa_api_projeto import mapa_gerador
 
-app = Flask(__name__)
+app = FastAPI()
 
-@app.route('/')
+class Localizacao(BaseModel):
+    imovel: str
+    latitude: float
+    longitude: float
+
+@app.get("/")
 def home():
-    return 'API de Mapas ativa.'
+    return {"mensagem": "API de geração de mapa funcionando."}
 
-@app.route('/mapa')
-def mapa():
-    lat = request.args.get('lat')
-    lng = request.args.get('lng')
+@app.post("/gerar-mapa")
+def gerar(localizacao: Localizacao):
+    lat, lng = localizacao.latitude, localizacao.longitude
+    imovel = localizacao.imovel
 
-    if not lat or not lng:
-        return jsonify({'erro': 'Latitude e longitude obrigatórias'}), 400
+    restaurantes_1km = mapa_gerador.buscar_restaurantes(lat, lng, 1000)
+    melhores = sorted(restaurantes_1km, key=lambda r: (-r.get('rating', 0), -r.get('user_ratings_total', 0)))[:10]
+    melhores_ids = {r.get('place_id') for r in melhores}
 
-    try:
-        mapa_url = gerar_mapa_por_latlng(float(lat), float(lng))
-        return jsonify({'url': mapa_url})
-    except Exception as e:
-        return jsonify({'erro': str(e)}), 500
+    restaurantes_500m = mapa_gerador.buscar_restaurantes(lat, lng, 500)
+    custo_beneficio = mapa_gerador.selecionar_custo_beneficio(restaurantes_500m, melhores_ids)
 
-if __name__ == '_main_':
-    app.run(debug=True)
+    mapa_gerador.gerar_mapa_html(imovel, lat, lng, melhores, custo_beneficio)
+    mapa_gerador.publicar_no_github()
+
+    return {
+        "mensagem": "Mapa publicado com sucesso!",
+        "url": "https://douglascnunes48.github.io/mapainterativo/mapa.html"
+ }
