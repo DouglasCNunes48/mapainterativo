@@ -69,5 +69,4 @@ def gerar_mapa_get(imovel: str = Query(...),
 
     return {
         "mensagem": "Mapa publicado com sucesso!",
-        "url": f"https://douglascnunes48.github.io/mapainterativo/{arquivo_publicado}"
-    }
+        "url": f"https://douglascnunes48.github.io/mapainterativo/{arquivo_publicado}"}
