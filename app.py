@@ -20,7 +20,7 @@ class Localizacao(BaseModel):
 def home():
     return {"mensagem": "API de geração de mapa funcionando."}
 
-@app.post("/gerar-mapa")
+@app.post("/gerar_mapa")
 def gerar(localizacao: Localizacao):
     lat, lng = localizacao.latitude, localizacao.longitude
     imovel = localizacao.imovel
