@@ -9,6 +9,7 @@ import folium
 import requests
 import os
 from github import Github
+from datetime import datetime
 
 API_KEY = os.getenv("GOOGLE_API_KEY")
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
@@ -65,7 +66,7 @@ def gerar_mapa_html(imovel, lat, lng, melhores, custo_beneficio):
     """))
     mapa.save("mapa.html")
 
-def publicar_no_github(nome_arquivo="mapa.html"):
+def publicar_no_github(nome_arquivo = f"mapa_{datetime.now().strftime('%Y%m%d%H%M%S')}.html"):
     g = Github(GITHUB_TOKEN)
     repo = g.get_repo(REPO_NAME)
     with open(nome_arquivo, "r", encoding="utf-8") as file:
