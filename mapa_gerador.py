@@ -15,6 +15,7 @@ API_KEY = os.getenv("GOOGLE_API_KEY")
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 REPO_NAME = "DouglasCNunes48/mapainterativo"
 BRANCH = "gh-pages"
+nome_arquivo = f"mapa_{datetime.now().strftime('%Y%m%d%H%M%S')}.html"
 
 def buscar_restaurantes(lat, lng, raio):
     url = (
@@ -64,15 +65,20 @@ def gerar_mapa_html(imovel, lat, lng, melhores, custo_beneficio):
         <b>Legenda</b><br>🔵 Imóvel<br>🔴 Melhores Avaliados (1km)<br>🟢 Custo Benefício (500m)
     </div>
     """))
-    mapa.save("mapa.html")
+    mapa.save(nome_arquivo)
 
-def publicar_no_github(nome_arquivo = f"mapa_{datetime.now().strftime('%Y%m%d%H%M%S')}.html"):
+def publicar_no_github(nome_arquivo):
     g = Github(GITHUB_TOKEN)
-    repo = g.get_repo(REPO_NAME)
-    with open(nome_arquivo, "r", encoding="utf-8") as file:
-        content = file.read()
+    repo = g.get_user().get_repo(REPO_NAME)
 
+    with open(nome_arquivo, "r", encoding="utf-8") as f:
+        content = f.read()
+    
     try:
         existing = repo.get_contents(nome_arquivo, ref=BRANCH)
         repo.update_file(existing.path, "Atualização do mapa", content, existing.sha, branch=BRANCH)
-    except:repo.create_file(nome_arquivo, "Criação do mapa", content, branch=BRANCH)
+    except:
+        repo.create_file(nome_arquivo, "Criação do mapa", content, branch=BRANCH)
+    
+    return nome_arquivo
+
