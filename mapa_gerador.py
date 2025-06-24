@@ -67,5 +67,5 @@ def publicar_no_github(nome_arquivo="mapa.html"):
     try:
         existing = repo.get_contents(nome_arquivo, ref=BRANCH)
         repo.update_file(existing.path, "Atualização do mapa", content, existing.sha, branch=BRANCH)
-    except: 
+    except:
         repo.create_file(nome_arquivo, "Criação do mapa", content, branch=BRANCH)
