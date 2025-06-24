@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -- coding: utf-8 --
 """
 Created on Tue Jun 24 09:25:08 2025
 
@@ -15,7 +15,6 @@ API_KEY = os.getenv("GOOGLE_API_KEY")
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 REPO_NAME = "DouglasCNunes48/mapainterativo"
 BRANCH = "gh-pages"
-nome_arquivo = f"mapa_{datetime.now().strftime('%Y%m%d%H%M%S')}.html"
 
 def buscar_restaurantes(lat, lng, raio):
     url = (
@@ -36,9 +35,10 @@ def selecionar_custo_beneficio(restaurantes, excluidos_ids):
     )
     return ordenados[:10]
 
-def gerar_mapa_html(imovel, lat, lng, melhores, custo_beneficio):
+def gerar_mapa_html(imovel, lat, lng, melhores, custo_beneficio, nome_arquivo):
     mapa = folium.Map(location=[lat, lng], zoom_start=16)
     bounds = [[lat, lng]]
+    
     folium.Marker([lat, lng], tooltip='Imóvel', popup=imovel,
                   icon=folium.Icon(color='blue', icon='home')).add_to(mapa)
 
@@ -65,6 +65,8 @@ def gerar_mapa_html(imovel, lat, lng, melhores, custo_beneficio):
         <b>Legenda</b><br>🔵 Imóvel<br>🔴 Melhores Avaliados (1km)<br>🟢 Custo Benefício (500m)
     </div>
     """))
+
+    # ✅ Agora salvando com o nome_arquivo corretamente
     mapa.save(nome_arquivo)
 
 def publicar_no_github(nome_arquivo):
@@ -80,5 +82,5 @@ def publicar_no_github(nome_arquivo):
     except:
         repo.create_file(nome_arquivo, "Criação do mapa", content, branch=BRANCH)
     
-    return nome_arquivo
+    return nome_arquivo
 
