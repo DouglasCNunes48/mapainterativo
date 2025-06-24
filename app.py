@@ -7,7 +7,7 @@ Created on Fri Jun 20 11:33:36 2025
 
 from fastapi import FastAPI
 from pydantic import BaseModel
-from mapa_api_projeto import mapa_gerador
+import mapa_gerador
 
 app = FastAPI()
 
