@@ -9,7 +9,7 @@ import folium
 import requests
 import os
 from github import Github
-from datetime import datetime
+
 
 API_KEY = os.getenv("GOOGLE_API_KEY")
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
@@ -81,6 +81,4 @@ def publicar_no_github(nome_arquivo):
         repo.update_file(existing.path, "Atualização do mapa", content, existing.sha, branch=BRANCH)
     except:
         repo.create_file(nome_arquivo, "Criação do mapa", content, branch=BRANCH)
-    
-    return nome_arquivo
-
+        return nome_arquivo
