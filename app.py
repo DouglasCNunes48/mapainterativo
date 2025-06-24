@@ -34,7 +34,7 @@ def gerar(localizacao: Localizacao):
     restaurantes_500m = mapa_gerador.buscar_restaurantes(lat, lng, 500)
     custo_beneficio = mapa_gerador.selecionar_custo_beneficio(restaurantes_500m, melhores_ids)
 
-    mapa_gerador.gerar_mapa_html(imovel, lat, lng, melhores, custo_beneficio, nome_arquivo)
+    mapa_gerador.gerar_mapa_html(imovel, lat, lng, melhores, custo_beneficio)
     arquivo_publicado = mapa_gerador.publicar_no_github(nome_arquivo)
 
     return {
@@ -56,7 +56,7 @@ def gerar_mapa_get(imovel: str = Query(...),
     restaurantes_500m = mapa_gerador.buscar_restaurantes(lat, lng, 500)
     custo_beneficio = mapa_gerador.selecionar_custo_beneficio(restaurantes_500m, melhores_ids)
 
-    mapa_gerador.gerar_mapa_html(imovel, lat, lng, melhores, custo_beneficio, nome_arquivo)
+    mapa_gerador.gerar_mapa_html(imovel, lat, lng, melhores, custo_beneficio)
     arquivo_publicado = mapa_gerador.publicar_no_github(nome_arquivo)
 
     return {
