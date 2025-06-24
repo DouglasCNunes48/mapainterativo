@@ -28,16 +28,12 @@ def gerar(localizacao: Localizacao):
     imovel = localizacao.imovel
 
     restaurantes_1km = mapa_gerador.buscar_restaurantes(lat, lng, 1000)
-    melhores = sorted(
-        restaurantes_1km,
-        key=lambda r: (-r.get('rating', 0), -r.get('user_ratings_total', 0))
-    )[:10]
+    melhores = sorted(restaurantes_1km, key=lambda r: (-r.get('rating', 0), -r.get('user_ratings_total', 0)))[:10]
     melhores_ids = {r.get('place_id') for r in melhores}
 
     restaurantes_500m = mapa_gerador.buscar_restaurantes(lat, lng, 500)
     custo_beneficio = mapa_gerador.selecionar_custo_beneficio(restaurantes_500m, melhores_ids)
 
-    # ✅ Corrigido: passando nome_arquivo para salvar e publicar o HTML corretamente
     mapa_gerador.gerar_mapa_html(imovel, lat, lng, melhores, custo_beneficio, nome_arquivo)
     arquivo_publicado = mapa_gerador.publicar_no_github(nome_arquivo)
 
@@ -54,16 +50,12 @@ def gerar_mapa_get(imovel: str = Query(...),
     lat, lng = latitude, longitude
 
     restaurantes_1km = mapa_gerador.buscar_restaurantes(lat, lng, 1000)
-    melhores = sorted(
-        restaurantes_1km,
-        key=lambda r: (-r.get("rating", 0), -r.get("user_ratings_total", 0))
-    )[:10]
-    melhores_ids = [r.get("place_id") for r in melhores]
+    melhores = sorted(restaurantes_1km, key=lambda r: (-r.get('rating', 0), -r.get('user_ratings_total', 0)))[:10]
+    melhores_ids = {r.get('place_id') for r in melhores}
 
     restaurantes_500m = mapa_gerador.buscar_restaurantes(lat, lng, 500)
     custo_beneficio = mapa_gerador.selecionar_custo_beneficio(restaurantes_500m, melhores_ids)
 
-    # ✅ Corrigido: passando nome_arquivo aqui também
     mapa_gerador.gerar_mapa_html(imovel, lat, lng, melhores, custo_beneficio, nome_arquivo)
     arquivo_publicado = mapa_gerador.publicar_no_github(nome_arquivo)
 
