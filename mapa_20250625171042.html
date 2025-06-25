@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_12f4f69d4bd1aae53d64ae9a3a965d04 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+        <div style="position: fixed; bottom: 50px; left: 50px; background: white; 
+            border:1px solid gray; padding: 10px; font-size: 14px; z-index:9999;">
+            <b>Legenda</b><br>🔵 Imóvel<br>🔴 Melhores Avaliados (1km)<br>🟢 Custo Benefício (500m)
+        </div>
+        
+    
+            <div class="folium-map" id="map_12f4f69d4bd1aae53d64ae9a3a965d04" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_12f4f69d4bd1aae53d64ae9a3a965d04 = L.map(
+                "map_12f4f69d4bd1aae53d64ae9a3a965d04",
+                {
+                    center: [-23.5052, -46.633308],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 16,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_bd336fa557e9e87cd991749eafaeeb57 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_bd336fa557e9e87cd991749eafaeeb57.addTo(map_12f4f69d4bd1aae53d64ae9a3a965d04);
+        
+    
+            var marker_b51799cdf6ed807e41a7ef0eec2036b5 = L.marker(
+                [-23.5052, -46.633308],
+                {
+}
+            ).addTo(map_12f4f69d4bd1aae53d64ae9a3a965d04);
+        
+    
+            var icon_ace38c73c90b2b403f0294986587f4c7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f088caf3e2eba1e9c7fe623689c2e92f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8c6877f822ce69d66a210712d9e7270a = $(`<div id="html_8c6877f822ce69d66a210712d9e7270a" style="width: 100.0%; height: 100.0%;">Infinity Tower</div>`)[0];
+                popup_f088caf3e2eba1e9c7fe623689c2e92f.setContent(html_8c6877f822ce69d66a210712d9e7270a);
+            
+        
+
+        marker_b51799cdf6ed807e41a7ef0eec2036b5.bindPopup(popup_f088caf3e2eba1e9c7fe623689c2e92f)
+        ;
+
+        
+    
+    
+            marker_b51799cdf6ed807e41a7ef0eec2036b5.bindTooltip(
+                `<div>
+                     Imóvel
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b51799cdf6ed807e41a7ef0eec2036b5.setIcon(icon_ace38c73c90b2b403f0294986587f4c7);
+            
+    
+            var marker_01fac962761372bb01edee8926ba3f01 = L.marker(
+                [-23.500125, -46.632609],
+                {
+}
+            ).addTo(map_12f4f69d4bd1aae53d64ae9a3a965d04);
+        
+    
+            var icon_870f7f5407653a31104ddf245ccea00e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_09ce0efd44103f55c1db82622b2f6136 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_588ad981b92f2e26b2c6c50027e5533c = $(`<div id="html_588ad981b92f2e26b2c6c50027e5533c" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>ESPETINHOS PARA CHURRASCO<br>Nota: 4.9</div>`)[0];
+                popup_09ce0efd44103f55c1db82622b2f6136.setContent(html_588ad981b92f2e26b2c6c50027e5533c);
+            
+        
+
+        marker_01fac962761372bb01edee8926ba3f01.bindPopup(popup_09ce0efd44103f55c1db82622b2f6136)
+        ;
+
+        
+    
+    
+            marker_01fac962761372bb01edee8926ba3f01.bindTooltip(
+                `<div>
+                     ESPETINHOS PARA CHURRASCO
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_01fac962761372bb01edee8926ba3f01.setIcon(icon_870f7f5407653a31104ddf245ccea00e);
+            
+    
+            var marker_44f67a0060564c899ab693bc518ba87a = L.marker(
+                [-23.4985818, -46.6317848],
+                {
+}
+            ).addTo(map_12f4f69d4bd1aae53d64ae9a3a965d04);
+        
+    
+            var icon_24b605929ac44e853ead1f6696062326 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5d581220c9d9dba1b9f6d95947150a47 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_919750def6520dc6e4e5bdb4a25036c9 = $(`<div id="html_919750def6520dc6e4e5bdb4a25036c9" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Viva Festa<br>Nota: 4.8</div>`)[0];
+                popup_5d581220c9d9dba1b9f6d95947150a47.setContent(html_919750def6520dc6e4e5bdb4a25036c9);
+            
+        
+
+        marker_44f67a0060564c899ab693bc518ba87a.bindPopup(popup_5d581220c9d9dba1b9f6d95947150a47)
+        ;
+
+        
+    
+    
+            marker_44f67a0060564c899ab693bc518ba87a.bindTooltip(
+                `<div>
+                     Viva Festa
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_44f67a0060564c899ab693bc518ba87a.setIcon(icon_24b605929ac44e853ead1f6696062326);
+            
+    
+            var marker_742f52f2534b2ab7a7f157e3ee7989d6 = L.marker(
+                [-23.502685, -46.6319589],
+                {
+}
+            ).addTo(map_12f4f69d4bd1aae53d64ae9a3a965d04);
+        
+    
+            var icon_e49dac548d254111666ecf5c8f60c871 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4ec9a2175f449db0ba29ed0a97e75425 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1811d0b5b71414d90fa2d571cb490784 = $(`<div id="html_1811d0b5b71414d90fa2d571cb490784" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Bávaros Bier<br>Nota: 4.7</div>`)[0];
+                popup_4ec9a2175f449db0ba29ed0a97e75425.setContent(html_1811d0b5b71414d90fa2d571cb490784);
+            
+        
+
+        marker_742f52f2534b2ab7a7f157e3ee7989d6.bindPopup(popup_4ec9a2175f449db0ba29ed0a97e75425)
+        ;
+
+        
+    
+    
+            marker_742f52f2534b2ab7a7f157e3ee7989d6.bindTooltip(
+                `<div>
+                     Bávaros Bier
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_742f52f2534b2ab7a7f157e3ee7989d6.setIcon(icon_e49dac548d254111666ecf5c8f60c871);
+            
+    
+            var marker_55d264e3d9a7282cb481bee2ca16c3a2 = L.marker(
+                [-23.5023071, -46.62946789999999],
+                {
+}
+            ).addTo(map_12f4f69d4bd1aae53d64ae9a3a965d04);
+        
+    
+            var icon_210b447a7510751ac139ad8c6735c594 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9d02cedf0b24596850f981a2d51118c8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7e1246b4a971a0e1abd9141ffd49065b = $(`<div id="html_7e1246b4a971a0e1abd9141ffd49065b" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Hamburgueria Vit's Burger<br>Nota: 4.6</div>`)[0];
+                popup_9d02cedf0b24596850f981a2d51118c8.setContent(html_7e1246b4a971a0e1abd9141ffd49065b);
+            
+        
+
+        marker_55d264e3d9a7282cb481bee2ca16c3a2.bindPopup(popup_9d02cedf0b24596850f981a2d51118c8)
+        ;
+
+        
+    
+    
+            marker_55d264e3d9a7282cb481bee2ca16c3a2.bindTooltip(
+                `<div>
+                     Hamburgueria Vit's Burger
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_55d264e3d9a7282cb481bee2ca16c3a2.setIcon(icon_210b447a7510751ac139ad8c6735c594);
+            
+    
+            var marker_66192634cd85bc5bf798a53c954118bb = L.marker(
+                [-23.5001855, -46.635541],
+                {
+}
+            ).addTo(map_12f4f69d4bd1aae53d64ae9a3a965d04);
+        
+    
+            var icon_33a6a3092af1d0e2320dcfc0f893a80d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9da16520757db54e8fa40556342d120a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fd9219d17e7ad8b42cfe7740fdd9e173 = $(`<div id="html_fd9219d17e7ad8b42cfe7740fdd9e173" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Nasser Esfihas Santana - Esfiharia em Santana - SP<br>Nota: 4.6</div>`)[0];
+                popup_9da16520757db54e8fa40556342d120a.setContent(html_fd9219d17e7ad8b42cfe7740fdd9e173);
+            
+        
+
+        marker_66192634cd85bc5bf798a53c954118bb.bindPopup(popup_9da16520757db54e8fa40556342d120a)
+        ;
+
+        
+    
+    
+            marker_66192634cd85bc5bf798a53c954118bb.bindTooltip(
+                `<div>
+                     Nasser Esfihas Santana - Esfiharia em Santana - SP
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_66192634cd85bc5bf798a53c954118bb.setIcon(icon_33a6a3092af1d0e2320dcfc0f893a80d);
+            
+    
+            var marker_80c63b793952baa5c087cd58fd856397 = L.marker(
+                [-23.5032151, -46.63530859999999],
+                {
+}
+            ).addTo(map_12f4f69d4bd1aae53d64ae9a3a965d04);
+        
+    
+            var icon_900f872cc49ebed027109423bc7affda = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fff083ed8c9df5042e4727b1dca1baed = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c0c610ea9c57f1c4b20af6c7aa1d2f7d = $(`<div id="html_c0c610ea9c57f1c4b20af6c7aa1d2f7d" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Dona Carmela<br>Nota: 4.5</div>`)[0];
+                popup_fff083ed8c9df5042e4727b1dca1baed.setContent(html_c0c610ea9c57f1c4b20af6c7aa1d2f7d);
+            
+        
+
+        marker_80c63b793952baa5c087cd58fd856397.bindPopup(popup_fff083ed8c9df5042e4727b1dca1baed)
+        ;
+
+        
+    
+    
+            marker_80c63b793952baa5c087cd58fd856397.bindTooltip(
+                `<div>
+                     Dona Carmela
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_80c63b793952baa5c087cd58fd856397.setIcon(icon_900f872cc49ebed027109423bc7affda);
+            
+    
+            var marker_48b4e136ea0ad76ec0b72309cfbc051b = L.marker(
+                [-23.5032455, -46.63509139999999],
+                {
+}
+            ).addTo(map_12f4f69d4bd1aae53d64ae9a3a965d04);
+        
+    
+            var icon_3b6f97b798025dc4337ee51d43eb57c4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8d54e1546972f2c9e50a75b499496fc8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5444cbe91654e86d6ff7a771bc85b139 = $(`<div id="html_5444cbe91654e86d6ff7a771bc85b139" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Si Señor! Premium TEX-MEX - Santana<br>Nota: 4.4</div>`)[0];
+                popup_8d54e1546972f2c9e50a75b499496fc8.setContent(html_5444cbe91654e86d6ff7a771bc85b139);
+            
+        
+
+        marker_48b4e136ea0ad76ec0b72309cfbc051b.bindPopup(popup_8d54e1546972f2c9e50a75b499496fc8)
+        ;
+
+        
+    
+    
+            marker_48b4e136ea0ad76ec0b72309cfbc051b.bindTooltip(
+                `<div>
+                     Si Señor! Premium TEX-MEX - Santana
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_48b4e136ea0ad76ec0b72309cfbc051b.setIcon(icon_3b6f97b798025dc4337ee51d43eb57c4);
+            
+    
+            var marker_f6c2e389467e0d1645678b073da124a7 = L.marker(
+                [-23.502368, -46.63071660000001],
+                {
+}
+            ).addTo(map_12f4f69d4bd1aae53d64ae9a3a965d04);
+        
+    
+            var icon_134b775abac686a248979e98522c67b1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ba79c3b935805db31c86cfd98323c2c7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_116421b3ba205c055cb13f2d4a4297ef = $(`<div id="html_116421b3ba205c055cb13f2d4a4297ef" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Flying Sushi Santana ( estamos atendendo só para DELIVERY, estamos em reforma para melhor atende-los ))<br>Nota: 4.4</div>`)[0];
+                popup_ba79c3b935805db31c86cfd98323c2c7.setContent(html_116421b3ba205c055cb13f2d4a4297ef);
+            
+        
+
+        marker_f6c2e389467e0d1645678b073da124a7.bindPopup(popup_ba79c3b935805db31c86cfd98323c2c7)
+        ;
+
+        
+    
+    
+            marker_f6c2e389467e0d1645678b073da124a7.bindTooltip(
+                `<div>
+                     Flying Sushi Santana ( estamos atendendo só para DELIVERY, estamos em reforma para melhor atende-los ))
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f6c2e389467e0d1645678b073da124a7.setIcon(icon_134b775abac686a248979e98522c67b1);
+            
+    
+            var marker_fdf5e4ea005de137513b0d225fcac731 = L.marker(
+                [-23.5021023, -46.6300076],
+                {
+}
+            ).addTo(map_12f4f69d4bd1aae53d64ae9a3a965d04);
+        
+    
+            var icon_248f43c8404baadd98e6c1018c72c899 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4975878cef334d19580a10c91e15b44f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_43c0cf785c1cdb318d1bf50b17b068d9 = $(`<div id="html_43c0cf785c1cdb318d1bf50b17b068d9" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Sodiê Doces Santana<br>Nota: 4.4</div>`)[0];
+                popup_4975878cef334d19580a10c91e15b44f.setContent(html_43c0cf785c1cdb318d1bf50b17b068d9);
+            
+        
+
+        marker_fdf5e4ea005de137513b0d225fcac731.bindPopup(popup_4975878cef334d19580a10c91e15b44f)
+        ;
+
+        
+    
+    
+            marker_fdf5e4ea005de137513b0d225fcac731.bindTooltip(
+                `<div>
+                     Sodiê Doces Santana
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_fdf5e4ea005de137513b0d225fcac731.setIcon(icon_248f43c8404baadd98e6c1018c72c899);
+            
+    
+            var marker_ac277c79adbbb2c509ce1bc8e46b2411 = L.marker(
+                [-23.5031669, -46.63475],
+                {
+}
+            ).addTo(map_12f4f69d4bd1aae53d64ae9a3a965d04);
+        
+    
+            var icon_13cf592079f2491c31f4e2fdf4522efd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_58268932d7f2fdaed7fd279695fa163a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_599682372523ecd834d0f7d5feefc22d = $(`<div id="html_599682372523ecd834d0f7d5feefc22d" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Temakeria Santana - Temakeria em Santana<br>Nota: 4.4</div>`)[0];
+                popup_58268932d7f2fdaed7fd279695fa163a.setContent(html_599682372523ecd834d0f7d5feefc22d);
+            
+        
+
+        marker_ac277c79adbbb2c509ce1bc8e46b2411.bindPopup(popup_58268932d7f2fdaed7fd279695fa163a)
+        ;
+
+        
+    
+    
+            marker_ac277c79adbbb2c509ce1bc8e46b2411.bindTooltip(
+                `<div>
+                     Temakeria Santana - Temakeria em Santana
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ac277c79adbbb2c509ce1bc8e46b2411.setIcon(icon_13cf592079f2491c31f4e2fdf4522efd);
+            
+    
+            var marker_dc134808d38f5bd8c262c2a8cdecc9b9 = L.marker(
+                [-23.5032788, -46.634162],
+                {
+}
+            ).addTo(map_12f4f69d4bd1aae53d64ae9a3a965d04);
+        
+    
+            var icon_4a2234c9cd16de610d5bde2af24b1d44 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fc8c71be80c61b694010429165d90334 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2003f9222796cf696ae81deaf2b051be = $(`<div id="html_2003f9222796cf696ae81deaf2b051be" style="width: 100.0%; height: 100.0%;">Custo Benefício<br>Rinconcito Peruano - Santana<br>Nota: 4.6</div>`)[0];
+                popup_fc8c71be80c61b694010429165d90334.setContent(html_2003f9222796cf696ae81deaf2b051be);
+            
+        
+
+        marker_dc134808d38f5bd8c262c2a8cdecc9b9.bindPopup(popup_fc8c71be80c61b694010429165d90334)
+        ;
+
+        
+    
+    
+            marker_dc134808d38f5bd8c262c2a8cdecc9b9.bindTooltip(
+                `<div>
+                     Rinconcito Peruano - Santana
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_dc134808d38f5bd8c262c2a8cdecc9b9.setIcon(icon_4a2234c9cd16de610d5bde2af24b1d44);
+            
+    
+            var marker_d2681a23d34fe6912aa7bee5874e8f3f = L.marker(
+                [-23.5030556, -46.6329985],
+                {
+}
+            ).addTo(map_12f4f69d4bd1aae53d64ae9a3a965d04);
+        
+    
+            var icon_4d417e0b447d2c1ee64bb1aef5e25d25 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f2f6cfe7e9f7973bd057ddefafb7c40f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_107a0dc38612a5a5ee27f7e351c5b055 = $(`<div id="html_107a0dc38612a5a5ee27f7e351c5b055" style="width: 100.0%; height: 100.0%;">Custo Benefício<br>Graça di Napolli Pizzaria<br>Nota: 4.6</div>`)[0];
+                popup_f2f6cfe7e9f7973bd057ddefafb7c40f.setContent(html_107a0dc38612a5a5ee27f7e351c5b055);
+            
+        
+
+        marker_d2681a23d34fe6912aa7bee5874e8f3f.bindPopup(popup_f2f6cfe7e9f7973bd057ddefafb7c40f)
+        ;
+
+        
+    
+    
+            marker_d2681a23d34fe6912aa7bee5874e8f3f.bindTooltip(
+                `<div>
+                     Graça di Napolli Pizzaria
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d2681a23d34fe6912aa7bee5874e8f3f.setIcon(icon_4d417e0b447d2c1ee64bb1aef5e25d25);
+            
+    
+            var marker_2fdbab3169e885b18dcb61212be85f94 = L.marker(
+                [-23.5032668, -46.6352248],
+                {
+}
+            ).addTo(map_12f4f69d4bd1aae53d64ae9a3a965d04);
+        
+    
+            var icon_8e6e9cda26138d3eecc063dcedd4db0e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b7341e47ef29fd1f9176c5c3e264e982 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cfa18ac575b11ed0cad622e3eb754f9d = $(`<div id="html_cfa18ac575b11ed0cad622e3eb754f9d" style="width: 100.0%; height: 100.0%;">Custo Benefício<br>Chip's Burger<br>Nota: 4.4</div>`)[0];
+                popup_b7341e47ef29fd1f9176c5c3e264e982.setContent(html_cfa18ac575b11ed0cad622e3eb754f9d);
+            
+        
+
+        marker_2fdbab3169e885b18dcb61212be85f94.bindPopup(popup_b7341e47ef29fd1f9176c5c3e264e982)
+        ;
+
+        
+    
+    
+            marker_2fdbab3169e885b18dcb61212be85f94.bindTooltip(
+                `<div>
+                     Chip's Burger
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2fdbab3169e885b18dcb61212be85f94.setIcon(icon_8e6e9cda26138d3eecc063dcedd4db0e);
+            
+    
+            var marker_951379cacd237c3c10896d33e95f4743 = L.marker(
+                [-23.50196709999999, -46.6347956],
+                {
+}
+            ).addTo(map_12f4f69d4bd1aae53d64ae9a3a965d04);
+        
+    
+            var icon_b2db91c759d7b6a123bcf574096d0b12 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6b9631f6add871ffba463dfca238a70c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_00f4370b409d2836bcdbc328ca29ea00 = $(`<div id="html_00f4370b409d2836bcdbc328ca29ea00" style="width: 100.0%; height: 100.0%;">Custo Benefício<br>Buffet Kids Kingdom<br>Nota: 4.4</div>`)[0];
+                popup_6b9631f6add871ffba463dfca238a70c.setContent(html_00f4370b409d2836bcdbc328ca29ea00);
+            
+        
+
+        marker_951379cacd237c3c10896d33e95f4743.bindPopup(popup_6b9631f6add871ffba463dfca238a70c)
+        ;
+
+        
+    
+    
+            marker_951379cacd237c3c10896d33e95f4743.bindTooltip(
+                `<div>
+                     Buffet Kids Kingdom
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_951379cacd237c3c10896d33e95f4743.setIcon(icon_b2db91c759d7b6a123bcf574096d0b12);
+            
+    
+            var marker_9b0d61a57b88b6a2ee5d28cbf97a056f = L.marker(
+                [-23.5038291, -46.636519],
+                {
+}
+            ).addTo(map_12f4f69d4bd1aae53d64ae9a3a965d04);
+        
+    
+            var icon_4bfba4e396ec3b376e5c86da991f7cc2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a208a405b64aaebc660a9a7e5de7bbd8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_747d4d0226eee9bf16b9fdbc4bb180af = $(`<div id="html_747d4d0226eee9bf16b9fdbc4bb180af" style="width: 100.0%; height: 100.0%;">Custo Benefício<br>City Chopperia<br>Nota: 4.3</div>`)[0];
+                popup_a208a405b64aaebc660a9a7e5de7bbd8.setContent(html_747d4d0226eee9bf16b9fdbc4bb180af);
+            
+        
+
+        marker_9b0d61a57b88b6a2ee5d28cbf97a056f.bindPopup(popup_a208a405b64aaebc660a9a7e5de7bbd8)
+        ;
+
+        
+    
+    
+            marker_9b0d61a57b88b6a2ee5d28cbf97a056f.bindTooltip(
+                `<div>
+                     City Chopperia
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9b0d61a57b88b6a2ee5d28cbf97a056f.setIcon(icon_4bfba4e396ec3b376e5c86da991f7cc2);
+            
+    
+            var marker_6bcf879988a5a2ecd074969383afcb20 = L.marker(
+                [-23.5032134, -46.6346317],
+                {
+}
+            ).addTo(map_12f4f69d4bd1aae53d64ae9a3a965d04);
+        
+    
+            var icon_d7be46ff37667e514e4e1249fcb64fd1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_278883c7e1effe2c2e35e209feb87d83 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0f9162a53cd86dffa3c0eb7e7e6347c3 = $(`<div id="html_0f9162a53cd86dffa3c0eb7e7e6347c3" style="width: 100.0%; height: 100.0%;">Custo Benefício<br>GUA.CO - Santana<br>Nota: 4.2</div>`)[0];
+                popup_278883c7e1effe2c2e35e209feb87d83.setContent(html_0f9162a53cd86dffa3c0eb7e7e6347c3);
+            
+        
+
+        marker_6bcf879988a5a2ecd074969383afcb20.bindPopup(popup_278883c7e1effe2c2e35e209feb87d83)
+        ;
+
+        
+    
+    
+            marker_6bcf879988a5a2ecd074969383afcb20.bindTooltip(
+                `<div>
+                     GUA.CO - Santana
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6bcf879988a5a2ecd074969383afcb20.setIcon(icon_d7be46ff37667e514e4e1249fcb64fd1);
+            
+    
+            var marker_68f016a0deda813d936375051406624d = L.marker(
+                [-23.5031157, -46.6350557],
+                {
+}
+            ).addTo(map_12f4f69d4bd1aae53d64ae9a3a965d04);
+        
+    
+            var icon_72635b8d6383e0e7a6bef4948c583e34 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_10cf322a7d82d3ca3047f06bfb8df9d1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4af1afcd338f09fca4ec50ff1528bf4e = $(`<div id="html_4af1afcd338f09fca4ec50ff1528bf4e" style="width: 100.0%; height: 100.0%;">Custo Benefício<br>Que Pankeka Delivery - Santana<br>Nota: 4.1</div>`)[0];
+                popup_10cf322a7d82d3ca3047f06bfb8df9d1.setContent(html_4af1afcd338f09fca4ec50ff1528bf4e);
+            
+        
+
+        marker_68f016a0deda813d936375051406624d.bindPopup(popup_10cf322a7d82d3ca3047f06bfb8df9d1)
+        ;
+
+        
+    
+    
+            marker_68f016a0deda813d936375051406624d.bindTooltip(
+                `<div>
+                     Que Pankeka Delivery - Santana
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_68f016a0deda813d936375051406624d.setIcon(icon_72635b8d6383e0e7a6bef4948c583e34);
+            
+    
+            map_12f4f69d4bd1aae53d64ae9a3a965d04.fitBounds(
+                [[-23.5052, -46.633308], [-23.500125, -46.632609], [-23.4985818, -46.6317848], [-23.502685, -46.6319589], [-23.5023071, -46.62946789999999], [-23.5001855, -46.635541], [-23.5032151, -46.63530859999999], [-23.5032455, -46.63509139999999], [-23.502368, -46.63071660000001], [-23.5021023, -46.6300076], [-23.5031669, -46.63475], [-23.5032788, -46.634162], [-23.5030556, -46.6329985], [-23.5032668, -46.6352248], [-23.50196709999999, -46.6347956], [-23.5038291, -46.636519], [-23.5032134, -46.6346317], [-23.5031157, -46.6350557]],
+                {}
+            );
+        
+</script>
+</html>
