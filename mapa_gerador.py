@@ -58,12 +58,13 @@ def selecionar_custo_beneficio(restaurantes, excluidos_ids):
 
 def gerar_mapa_html(imovel, lat, lng, melhores, custo_beneficio, nome_arquivo):
     try:
-        # Sanitiza o nome do arquivo para evitar problemas de URL ou GitHub
+        # Sanitiza o nome do arquivo para evitar problemas com URL ou GitHub
         nome_arquivo = re.sub(r'[^a-zA-Z0-9_\-\.]', '_', nome_arquivo)
 
         mapa = folium.Map(location=[lat, lng], zoom_start=16)
         bounds = [[lat, lng]]
 
+        # Ponto do imóvel
         folium.Marker(
             [lat, lng],
             tooltip='Imóvel',
@@ -71,6 +72,7 @@ def gerar_mapa_html(imovel, lat, lng, melhores, custo_beneficio, nome_arquivo):
             icon=folium.Icon(color='blue', icon='home')
         ).add_to(mapa)
 
+        # Melhores avaliados (1km)
         for r in melhores:
             pos = r['geometry']['location']
             folium.Marker(
@@ -81,6 +83,7 @@ def gerar_mapa_html(imovel, lat, lng, melhores, custo_beneficio, nome_arquivo):
             ).add_to(mapa)
             bounds.append([pos['lat'], pos['lng']])
 
+        # Custo-benefício (500m)
         for r in custo_beneficio:
             pos = r['geometry']['location']
             folium.Marker(
@@ -92,6 +95,8 @@ def gerar_mapa_html(imovel, lat, lng, melhores, custo_beneficio, nome_arquivo):
             bounds.append([pos['lat'], pos['lng']])
 
         mapa.fit_bounds(bounds)
+
+        # Legenda visual
         mapa.get_root().html.add_child(folium.Element("""
         <div style="position: fixed; bottom: 50px; left: 50px; background: white; 
             border:1px solid gray; padding: 10px; font-size: 14px; z-index:9999;">
@@ -118,13 +123,13 @@ def publicar_no_github(nome_arquivo):
             existing = repo.get_contents(nome_arquivo, ref=BRANCH)
             repo.update_file(existing.path, "Atualização do mapa", content, existing.sha, branch=BRANCH)
             print("[DEBUG] Arquivo atualizado no GitHub.")
-           
         except Exception as e:
             print(f"[DEBUG] Arquivo não encontrado para update. Criando novo. Detalhes: {e}")
             repo.create_file(nome_arquivo, "Criação do mapa", content, branch=BRANCH)
             print("[DEBUG] Arquivo criado no GitHub.")
-            return nome_arquivo 
+
+        return nome_arquivo  # ← garantir retorno mesmo após update
 
     except Exception as e:
         print(f"[ERRO] Erro ao publicar no GitHub: {e}")
-        raise
+        raise e  # raise explícito com contexto
