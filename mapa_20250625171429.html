@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_fa380e81543492a4c9a8a43827ef9e85 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+        <div style="position: fixed; bottom: 50px; left: 50px; background: white; 
+            border:1px solid gray; padding: 10px; font-size: 14px; z-index:9999;">
+            <b>Legenda</b><br>🔵 Imóvel<br>🔴 Melhores Avaliados (1km)<br>🟢 Custo Benefício (500m)
+        </div>
+        
+    
+            <div class="folium-map" id="map_fa380e81543492a4c9a8a43827ef9e85" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_fa380e81543492a4c9a8a43827ef9e85 = L.map(
+                "map_fa380e81543492a4c9a8a43827ef9e85",
+                {
+                    center: [-23.5, -46.6],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 16,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_041bb26af73306436dbfd4d04da80e12 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_041bb26af73306436dbfd4d04da80e12.addTo(map_fa380e81543492a4c9a8a43827ef9e85);
+        
+    
+            var marker_ef67d384764076d95c1104a674b59a1f = L.marker(
+                [-23.5, -46.6],
+                {
+}
+            ).addTo(map_fa380e81543492a4c9a8a43827ef9e85);
+        
+    
+            var icon_91737ae094e6710632a74189709b6982 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_70b17b31404c0774a098e4c932fef66a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0080d9bc1fb7055a8554074162500474 = $(`<div id="html_0080d9bc1fb7055a8554074162500474" style="width: 100.0%; height: 100.0%;">Ping</div>`)[0];
+                popup_70b17b31404c0774a098e4c932fef66a.setContent(html_0080d9bc1fb7055a8554074162500474);
+            
+        
+
+        marker_ef67d384764076d95c1104a674b59a1f.bindPopup(popup_70b17b31404c0774a098e4c932fef66a)
+        ;
+
+        
+    
+    
+            marker_ef67d384764076d95c1104a674b59a1f.bindTooltip(
+                `<div>
+                     Imóvel
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ef67d384764076d95c1104a674b59a1f.setIcon(icon_91737ae094e6710632a74189709b6982);
+            
+    
+            var marker_8c549e0c7d1c659fc9d07bab1364ff2f = L.marker(
+                [-23.501228, -46.599833],
+                {
+}
+            ).addTo(map_fa380e81543492a4c9a8a43827ef9e85);
+        
+    
+            var icon_0b358a73771bc781619760aff1acd455 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0de94769184f3cee1eff8d7347452b4e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_859540c0406376ab125e9dec9d8c4547 = $(`<div id="html_859540c0406376ab125e9dec9d8c4547" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Piratas Do Minho<br>Nota: 4.9</div>`)[0];
+                popup_0de94769184f3cee1eff8d7347452b4e.setContent(html_859540c0406376ab125e9dec9d8c4547);
+            
+        
+
+        marker_8c549e0c7d1c659fc9d07bab1364ff2f.bindPopup(popup_0de94769184f3cee1eff8d7347452b4e)
+        ;
+
+        
+    
+    
+            marker_8c549e0c7d1c659fc9d07bab1364ff2f.bindTooltip(
+                `<div>
+                     Piratas Do Minho
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8c549e0c7d1c659fc9d07bab1364ff2f.setIcon(icon_0b358a73771bc781619760aff1acd455);
+            
+    
+            var marker_f8d4342304327f6dda95f6eb23e26476 = L.marker(
+                [-23.4974614, -46.5992719],
+                {
+}
+            ).addTo(map_fa380e81543492a4c9a8a43827ef9e85);
+        
+    
+            var icon_677a3d43e4073a710c020e8dceaa9768 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3a0697bc5c18ee11a63c26dce3e1d52e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_50c1bf53489420711d21fc9c9bccacfa = $(`<div id="html_50c1bf53489420711d21fc9c9bccacfa" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Frango Frito - UoL! Chicken<br>Nota: 4.8</div>`)[0];
+                popup_3a0697bc5c18ee11a63c26dce3e1d52e.setContent(html_50c1bf53489420711d21fc9c9bccacfa);
+            
+        
+
+        marker_f8d4342304327f6dda95f6eb23e26476.bindPopup(popup_3a0697bc5c18ee11a63c26dce3e1d52e)
+        ;
+
+        
+    
+    
+            marker_f8d4342304327f6dda95f6eb23e26476.bindTooltip(
+                `<div>
+                     Frango Frito - UoL! Chicken
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f8d4342304327f6dda95f6eb23e26476.setIcon(icon_677a3d43e4073a710c020e8dceaa9768);
+            
+    
+            var marker_d7998997486ce18eca274a830b7f12bc = L.marker(
+                [-23.4965567, -46.6057543],
+                {
+}
+            ).addTo(map_fa380e81543492a4c9a8a43827ef9e85);
+        
+    
+            var icon_bfb8e69c2c669e358563507324009c9c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9110cfacb5575606bdc273c65ecc65cc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_061f024921efeb8ab5b0936018930cf6 = $(`<div id="html_061f024921efeb8ab5b0936018930cf6" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Espaço PauBrasil GastroBar<br>Nota: 4.7</div>`)[0];
+                popup_9110cfacb5575606bdc273c65ecc65cc.setContent(html_061f024921efeb8ab5b0936018930cf6);
+            
+        
+
+        marker_d7998997486ce18eca274a830b7f12bc.bindPopup(popup_9110cfacb5575606bdc273c65ecc65cc)
+        ;
+
+        
+    
+    
+            marker_d7998997486ce18eca274a830b7f12bc.bindTooltip(
+                `<div>
+                     Espaço PauBrasil GastroBar
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d7998997486ce18eca274a830b7f12bc.setIcon(icon_bfb8e69c2c669e358563507324009c9c);
+            
+    
+            var marker_0dff49e5e5b88b3555d8949a2269f00b = L.marker(
+                [-23.50738440000001, -46.5991961],
+                {
+}
+            ).addTo(map_fa380e81543492a4c9a8a43827ef9e85);
+        
+    
+            var icon_3f975a729397c5cb8d3b28f220005aa4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_012259f16833803b7098c3334e37bf1a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5fb7b6d5f001c870f630b84ee854d23f = $(`<div id="html_5fb7b6d5f001c870f630b84ee854d23f" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Pizzaria do Dudu - Vila Guilherme<br>Nota: 4.6</div>`)[0];
+                popup_012259f16833803b7098c3334e37bf1a.setContent(html_5fb7b6d5f001c870f630b84ee854d23f);
+            
+        
+
+        marker_0dff49e5e5b88b3555d8949a2269f00b.bindPopup(popup_012259f16833803b7098c3334e37bf1a)
+        ;
+
+        
+    
+    
+            marker_0dff49e5e5b88b3555d8949a2269f00b.bindTooltip(
+                `<div>
+                     Pizzaria do Dudu - Vila Guilherme
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0dff49e5e5b88b3555d8949a2269f00b.setIcon(icon_3f975a729397c5cb8d3b28f220005aa4);
+            
+    
+            var marker_0a0fd171b118a4eeb9b2f2142ce99385 = L.marker(
+                [-23.4992244, -46.6000003],
+                {
+}
+            ).addTo(map_fa380e81543492a4c9a8a43827ef9e85);
+        
+    
+            var icon_fe21cbf1aef745a80d21f8c106aa7b73 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5a695b88ead7ee222fbe15840eab9cd4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_53ec475dbf2d9c2d2d012ebca6303d4b = $(`<div id="html_53ec475dbf2d9c2d2d012ebca6303d4b" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Bar e Lanchonete Bem Mais<br>Nota: 4.6</div>`)[0];
+                popup_5a695b88ead7ee222fbe15840eab9cd4.setContent(html_53ec475dbf2d9c2d2d012ebca6303d4b);
+            
+        
+
+        marker_0a0fd171b118a4eeb9b2f2142ce99385.bindPopup(popup_5a695b88ead7ee222fbe15840eab9cd4)
+        ;
+
+        
+    
+    
+            marker_0a0fd171b118a4eeb9b2f2142ce99385.bindTooltip(
+                `<div>
+                     Bar e Lanchonete Bem Mais
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0a0fd171b118a4eeb9b2f2142ce99385.setIcon(icon_fe21cbf1aef745a80d21f8c106aa7b73);
+            
+    
+            var marker_1b03a4530e650ee67b0e6e05b6cb7c3f = L.marker(
+                [-23.5066891, -46.6001171],
+                {
+}
+            ).addTo(map_fa380e81543492a4c9a8a43827ef9e85);
+        
+    
+            var icon_621983f439e8e067832ea3871a039f44 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_89c2edb744e523a5e7f8c397d4dbfb98 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5ed760c178f1a1f8a2d681fd318a2a9d = $(`<div id="html_5ed760c178f1a1f8a2d681fd318a2a9d" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Sonda Supermercados - Maria Cândida<br>Nota: 4.5</div>`)[0];
+                popup_89c2edb744e523a5e7f8c397d4dbfb98.setContent(html_5ed760c178f1a1f8a2d681fd318a2a9d);
+            
+        
+
+        marker_1b03a4530e650ee67b0e6e05b6cb7c3f.bindPopup(popup_89c2edb744e523a5e7f8c397d4dbfb98)
+        ;
+
+        
+    
+    
+            marker_1b03a4530e650ee67b0e6e05b6cb7c3f.bindTooltip(
+                `<div>
+                     Sonda Supermercados - Maria Cândida
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1b03a4530e650ee67b0e6e05b6cb7c3f.setIcon(icon_621983f439e8e067832ea3871a039f44);
+            
+    
+            var marker_2b7efcd723cdf5a8ecfdb8f70694d42b = L.marker(
+                [-23.5036036, -46.6084872],
+                {
+}
+            ).addTo(map_fa380e81543492a4c9a8a43827ef9e85);
+        
+    
+            var icon_4afef0e6226db80aa0de3f3f8b998e6f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1e617e9be9899a5928a25d5321a29772 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4a3958880fc19706bf4809d0ef3be20d = $(`<div id="html_4a3958880fc19706bf4809d0ef3be20d" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Maria Farofa Bar e Restaurante<br>Nota: 4.5</div>`)[0];
+                popup_1e617e9be9899a5928a25d5321a29772.setContent(html_4a3958880fc19706bf4809d0ef3be20d);
+            
+        
+
+        marker_2b7efcd723cdf5a8ecfdb8f70694d42b.bindPopup(popup_1e617e9be9899a5928a25d5321a29772)
+        ;
+
+        
+    
+    
+            marker_2b7efcd723cdf5a8ecfdb8f70694d42b.bindTooltip(
+                `<div>
+                     Maria Farofa Bar e Restaurante
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2b7efcd723cdf5a8ecfdb8f70694d42b.setIcon(icon_4afef0e6226db80aa0de3f3f8b998e6f);
+            
+    
+            var marker_1114206f9e8a085d1f44860e08be6b7a = L.marker(
+                [-23.498906, -46.59828869999999],
+                {
+}
+            ).addTo(map_fa380e81543492a4c9a8a43827ef9e85);
+        
+    
+            var icon_948ec8ddb9e8de5b94e8721bc0724fdf = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d931db487bd0c717d2d20552aca71122 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3b6efccfc78a09ca8cd77eba68079306 = $(`<div id="html_3b6efccfc78a09ca8cd77eba68079306" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Quintal do sabor<br>Nota: 4.5</div>`)[0];
+                popup_d931db487bd0c717d2d20552aca71122.setContent(html_3b6efccfc78a09ca8cd77eba68079306);
+            
+        
+
+        marker_1114206f9e8a085d1f44860e08be6b7a.bindPopup(popup_d931db487bd0c717d2d20552aca71122)
+        ;
+
+        
+    
+    
+            marker_1114206f9e8a085d1f44860e08be6b7a.bindTooltip(
+                `<div>
+                     Quintal do sabor
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1114206f9e8a085d1f44860e08be6b7a.setIcon(icon_948ec8ddb9e8de5b94e8721bc0724fdf);
+            
+    
+            var marker_61ba3489a72fc98a5def6e9c160ba6c8 = L.marker(
+                [-23.49808750000001, -46.5997109],
+                {
+}
+            ).addTo(map_fa380e81543492a4c9a8a43827ef9e85);
+        
+    
+            var icon_b81b7d2bcd40a03609b70959985c23d0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0066c314be63e347d95c1aa0bfee3337 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1c01f00794b126bc81db054e557ffa78 = $(`<div id="html_1c01f00794b126bc81db054e557ffa78" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Disk Esfiha<br>Nota: 4.4</div>`)[0];
+                popup_0066c314be63e347d95c1aa0bfee3337.setContent(html_1c01f00794b126bc81db054e557ffa78);
+            
+        
+
+        marker_61ba3489a72fc98a5def6e9c160ba6c8.bindPopup(popup_0066c314be63e347d95c1aa0bfee3337)
+        ;
+
+        
+    
+    
+            marker_61ba3489a72fc98a5def6e9c160ba6c8.bindTooltip(
+                `<div>
+                     Disk Esfiha
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_61ba3489a72fc98a5def6e9c160ba6c8.setIcon(icon_b81b7d2bcd40a03609b70959985c23d0);
+            
+    
+            var marker_953bec2a5d16f03070fe7edf5be457a6 = L.marker(
+                [-23.4961672, -46.5983522],
+                {
+}
+            ).addTo(map_fa380e81543492a4c9a8a43827ef9e85);
+        
+    
+            var icon_c7eb7d0c1a56a2466735173ca91b5bc2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_25e4d2ae4ab2fa6bf78dfc4b11a25fbc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2429a10cf93ae88417714a4dd4a8f23b = $(`<div id="html_2429a10cf93ae88417714a4dd4a8f23b" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Artezanalle Restaurante<br>Nota: 4.3</div>`)[0];
+                popup_25e4d2ae4ab2fa6bf78dfc4b11a25fbc.setContent(html_2429a10cf93ae88417714a4dd4a8f23b);
+            
+        
+
+        marker_953bec2a5d16f03070fe7edf5be457a6.bindPopup(popup_25e4d2ae4ab2fa6bf78dfc4b11a25fbc)
+        ;
+
+        
+    
+    
+            marker_953bec2a5d16f03070fe7edf5be457a6.bindTooltip(
+                `<div>
+                     Artezanalle Restaurante
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_953bec2a5d16f03070fe7edf5be457a6.setIcon(icon_c7eb7d0c1a56a2466735173ca91b5bc2);
+            
+    
+            var marker_d48137a7f30a03de8246f6d472ca06ce = L.marker(
+                [-23.5008367, -46.6008998],
+                {
+}
+            ).addTo(map_fa380e81543492a4c9a8a43827ef9e85);
+        
+    
+            var icon_619fd5bd344643820a6afc65a9ef599a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f21b1eeccb45c986eaf38dc9bc71f162 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3187f1d1cce36184a389181cb8fe8b36 = $(`<div id="html_3187f1d1cce36184a389181cb8fe8b36" style="width: 100.0%; height: 100.0%;">Custo Benefício<br>Pizzaria Dom Michello<br>Nota: 3.9</div>`)[0];
+                popup_f21b1eeccb45c986eaf38dc9bc71f162.setContent(html_3187f1d1cce36184a389181cb8fe8b36);
+            
+        
+
+        marker_d48137a7f30a03de8246f6d472ca06ce.bindPopup(popup_f21b1eeccb45c986eaf38dc9bc71f162)
+        ;
+
+        
+    
+    
+            marker_d48137a7f30a03de8246f6d472ca06ce.bindTooltip(
+                `<div>
+                     Pizzaria Dom Michello
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d48137a7f30a03de8246f6d472ca06ce.setIcon(icon_619fd5bd344643820a6afc65a9ef599a);
+            
+    
+            var marker_a57db5678e43b29522ff0c81a2250acc = L.marker(
+                [-23.4969344, -46.5968595],
+                {
+}
+            ).addTo(map_fa380e81543492a4c9a8a43827ef9e85);
+        
+    
+            var icon_f124100d13ff86514db951b3a1c001da = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ab9bedd6a9ef05cf2813e425c748833b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_38ed0ac3d089dd66412194e6ffb15656 = $(`<div id="html_38ed0ac3d089dd66412194e6ffb15656" style="width: 100.0%; height: 100.0%;">Custo Benefício<br>Bar e Mercearia Tapirai<br>Nota: 3.4</div>`)[0];
+                popup_ab9bedd6a9ef05cf2813e425c748833b.setContent(html_38ed0ac3d089dd66412194e6ffb15656);
+            
+        
+
+        marker_a57db5678e43b29522ff0c81a2250acc.bindPopup(popup_ab9bedd6a9ef05cf2813e425c748833b)
+        ;
+
+        
+    
+    
+            marker_a57db5678e43b29522ff0c81a2250acc.bindTooltip(
+                `<div>
+                     Bar e Mercearia Tapirai
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a57db5678e43b29522ff0c81a2250acc.setIcon(icon_f124100d13ff86514db951b3a1c001da);
+            
+    
+            map_fa380e81543492a4c9a8a43827ef9e85.fitBounds(
+                [[-23.5, -46.6], [-23.501228, -46.599833], [-23.4974614, -46.5992719], [-23.4965567, -46.6057543], [-23.50738440000001, -46.5991961], [-23.4992244, -46.6000003], [-23.5066891, -46.6001171], [-23.5036036, -46.6084872], [-23.498906, -46.59828869999999], [-23.49808750000001, -46.5997109], [-23.4961672, -46.5983522], [-23.5008367, -46.6008998], [-23.4969344, -46.5968595]],
+                {}
+            );
+        
+</script>
+</html>
