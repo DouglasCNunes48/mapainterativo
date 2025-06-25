@@ -89,7 +89,7 @@ def publicar_no_github(nome_arquivo):
     print(f"[DEBUG] Publicando no GitHub: {nome_arquivo}")
     try:
         g = Github(GITHUB_TOKEN)
-        repo = g.get_user().get_repo(REPO_NAME)
+        repo = g.get_repo(REPO_NAME)
 
         with open(nome_arquivo, "r", encoding="utf-8") as f:
             content = f.read()
