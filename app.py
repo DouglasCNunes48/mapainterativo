@@ -1,22 +1,32 @@
 from fastapi import FastAPI, Query, HTTPException
-import mapa_gerador
 from datetime import datetime
+import mapa_gerador
 
 app = FastAPI()
 
 @app.get("/gerar_mapa")
-def gerar_get(imovel: str = Query(...), latitude: float = Query(...), longitude: float = Query(...)):
+def gerar_get(
+    imovel: str = Query(...),
+    latitude: float = Query(...),
+    longitude: float = Query(...)
+):
     try:
         nome_arquivo = f"mapa_{datetime.now().strftime('%Y%m%d%H%M%S')}.html"
         print(f"[INFO] GET recebido: imovel={imovel}, latitude={latitude}, longitude={longitude}")
         
+        # Buscar restaurantes no raio de 1km
         restaurantes_1km = mapa_gerador.buscar_restaurantes(latitude, longitude, 1000)
-        melhores = sorted(restaurantes_1km, key=lambda r: (-r.get("rating", 0), -r.get("user_ratings_total", 0)))[:10]
+        melhores = sorted(
+            restaurantes_1km,
+            key=lambda r: (-r.get("rating", 0), -r.get("user_ratings_total", 0))
+        )[:10]
         melhores_ids = {r.get("place_id") for r in melhores}
 
+        # Buscar restaurantes no raio de 500m excluindo os melhores
         restaurantes_500m = mapa_gerador.buscar_restaurantes(latitude, longitude, 500)
         custo_beneficio = mapa_gerador.selecionar_custo_beneficio(restaurantes_500m, melhores_ids)
 
+        # Gerar HTML e publicar no GitHub Pages
         mapa_gerador.gerar_mapa_html(imovel, latitude, longitude, melhores, custo_beneficio, nome_arquivo)
         arquivo_publicado = mapa_gerador.publicar_no_github(nome_arquivo)
 
