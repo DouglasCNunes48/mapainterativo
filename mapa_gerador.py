@@ -13,13 +13,13 @@ BRANCH = "gh-pages"
 
 # === VALIDAÇÃO INICIAL ===
 if not API_KEY:
-    raise EnvironmentError("Variável GOOGLE_API_KEY não está definida.")
+    raise EnvironmentError("❌ Variável GOOGLE_API_KEY não está definida.")
 if not GITHUB_TOKEN:
-    raise EnvironmentError("Variável GITHUB_TOKEN não está definida.")
+    raise EnvironmentError("❌ Variável GITHUB_TOKEN não está definida.")
 if not REPO_NAME:
-    raise EnvironmentError("Variável REPO_NAME não está definida.")
+    raise EnvironmentError("❌ Variável REPO_NAME não está definida.")
 
-# === FUNÇÕES PRINCIPAIS ===
+# === FUNÇÕES ===
 
 def buscar_restaurantes(lat, lng, raio):
     try:
@@ -27,14 +27,14 @@ def buscar_restaurantes(lat, lng, raio):
             f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
             f"location={lat},{lng}&radius={raio}&type=restaurant&key={API_KEY}"
         )
-        resposta = requests.get(url)
-        dados = resposta.json()
+        response = requests.get(url, timeout=10)  # ← timeout evita travamento
+        dados = response.json()
 
         if dados.get("status") != "OK":
-            print(f"[ERRO] Falha na API Google Places: {dados.get('status')}")
+            print(f"[ERRO] Google Places retornou erro: {dados.get('status')}")
             return []
 
-        print(f"[INFO] Restaurantes encontrados (raio {raio}m): {len(dados['results'])}")
+        print(f"[INFO] Restaurantes encontrados no raio {raio}m: {len(dados['results'])}")
         return dados['results']
 
     except Exception as e:
@@ -62,12 +62,12 @@ def selecionar_custo_beneficio(restaurantes, ids_excluidos):
 
 def gerar_mapa_html(imovel, lat, lng, melhores, custo_beneficio, nome_arquivo):
     try:
-        nome_arquivo = re.sub(r"[^\w\.-]", "_", nome_arquivo)  # segurança para nome de arquivo
+        nome_arquivo = re.sub(r"[^\w\.-]", "_", nome_arquivo)
 
         mapa = folium.Map(location=[lat, lng], zoom_start=16)
         bounds = [[lat, lng]]
 
-        # Pino principal: imóvel
+        # Imóvel
         folium.Marker(
             [lat, lng],
             tooltip="Imóvel",
@@ -75,7 +75,7 @@ def gerar_mapa_html(imovel, lat, lng, melhores, custo_beneficio, nome_arquivo):
             icon=folium.Icon(color="blue", icon="home")
         ).add_to(mapa)
 
-        # Melhores avaliados (vermelho)
+        # Melhores avaliados
         for r in melhores:
             pos = r["geometry"]["location"]
             folium.Marker(
@@ -86,7 +86,7 @@ def gerar_mapa_html(imovel, lat, lng, melhores, custo_beneficio, nome_arquivo):
             ).add_to(mapa)
             bounds.append([pos["lat"], pos["lng"]])
 
-        # Custo-benefício (verde)
+        # Custo-benefício
         for r in custo_beneficio:
             pos = r["geometry"]["location"]
             folium.Marker(
@@ -99,8 +99,7 @@ def gerar_mapa_html(imovel, lat, lng, melhores, custo_beneficio, nome_arquivo):
 
         mapa.fit_bounds(bounds)
 
-        # Legenda
-        legenda = """
+        legenda_html = """
         <div style="position: fixed; bottom: 50px; left: 50px; background: white;
             border: 1px solid gray; padding: 10px; font-size: 14px; z-index:9999;">
             <b>Legenda</b><br>
@@ -109,10 +108,10 @@ def gerar_mapa_html(imovel, lat, lng, melhores, custo_beneficio, nome_arquivo):
             🟢 Custo Benefício (500m)
         </div>
         """
-        mapa.get_root().html.add_child(folium.Element(legenda))
+        mapa.get_root().html.add_child(folium.Element(legenda_html))
 
         mapa.save(nome_arquivo)
-        print(f"[INFO] Mapa HTML salvo: {nome_arquivo}")
+        print(f"[INFO] Mapa salvo localmente: {nome_arquivo}")
 
     except Exception as e:
         print(f"[ERRO] gerar_mapa_html: {e}")
@@ -120,7 +119,7 @@ def gerar_mapa_html(imovel, lat, lng, melhores, custo_beneficio, nome_arquivo):
 
 def publicar_no_github(nome_arquivo):
     try:
-        print(f"[INFO] Publicando no GitHub Pages: {nome_arquivo}")
+        print(f"[INFO] Publicando no GitHub: {nome_arquivo}")
         g = Github(GITHUB_TOKEN)
         repo = g.get_user().get_repo(REPO_NAME)
 
@@ -136,11 +135,16 @@ def publicar_no_github(nome_arquivo):
                 existing.sha,
                 branch=BRANCH
             )
-            print("[INFO] Arquivo atualizado no repositório.")
+            print(f"[INFO] Arquivo atualizado no GitHub Pages: {nome_arquivo}")
         except Exception as e:
-            print(f"[WARN] Criando novo arquivo. Detalhes: {e}")
-            repo.create_file(nome_arquivo, "Criação do mapa", content, branch=BRANCH)
-            print("[INFO] Arquivo criado no repositório.")
+            print(f"[INFO] Criando novo arquivo: {e}")
+            repo.create_file(
+                nome_arquivo,
+                "Criação do mapa",
+                content,
+                branch=BRANCH
+            )
+            print(f"[INFO] Arquivo criado no GitHub Pages: {nome_arquivo}")
 
         return nome_arquivo
 
