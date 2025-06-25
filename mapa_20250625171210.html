@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_34f0b1c36166d6528f3529a3867eaa3d {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+        <div style="position: fixed; bottom: 50px; left: 50px; background: white; 
+            border:1px solid gray; padding: 10px; font-size: 14px; z-index:9999;">
+            <b>Legenda</b><br>🔵 Imóvel<br>🔴 Melhores Avaliados (1km)<br>🟢 Custo Benefício (500m)
+        </div>
+        
+    
+            <div class="folium-map" id="map_34f0b1c36166d6528f3529a3867eaa3d" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_34f0b1c36166d6528f3529a3867eaa3d = L.map(
+                "map_34f0b1c36166d6528f3529a3867eaa3d",
+                {
+                    center: [-23.629853, -46.708291],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 16,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_278e92c581a89921153d31e9001d222e = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_278e92c581a89921153d31e9001d222e.addTo(map_34f0b1c36166d6528f3529a3867eaa3d);
+        
+    
+            var marker_0a2e7a7f70af1561d5b72377fa678abd = L.marker(
+                [-23.629853, -46.708291],
+                {
+}
+            ).addTo(map_34f0b1c36166d6528f3529a3867eaa3d);
+        
+    
+            var icon_604290ea4b4cdf1251468ff8facae974 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5d4be9ff1c8a8e61edb9b73db49c8433 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_46defbdf09fc992d6fd341422f6fc8b0 = $(`<div id="html_46defbdf09fc992d6fd341422f6fc8b0" style="width: 100.0%; height: 100.0%;">Infinity Tower</div>`)[0];
+                popup_5d4be9ff1c8a8e61edb9b73db49c8433.setContent(html_46defbdf09fc992d6fd341422f6fc8b0);
+            
+        
+
+        marker_0a2e7a7f70af1561d5b72377fa678abd.bindPopup(popup_5d4be9ff1c8a8e61edb9b73db49c8433)
+        ;
+
+        
+    
+    
+            marker_0a2e7a7f70af1561d5b72377fa678abd.bindTooltip(
+                `<div>
+                     Imóvel
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0a2e7a7f70af1561d5b72377fa678abd.setIcon(icon_604290ea4b4cdf1251468ff8facae974);
+            
+    
+            var marker_02238efb087c27f25864300956d8be82 = L.marker(
+                [-23.6324544, -46.71015949999999],
+                {
+}
+            ).addTo(map_34f0b1c36166d6528f3529a3867eaa3d);
+        
+    
+            var icon_a5045a3a566fcc9621daca48c78fafc9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_682d5582e50e9160febab0332700ed53 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_032fbe29bfebd33614ff9473f8cadef3 = $(`<div id="html_032fbe29bfebd33614ff9473f8cadef3" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Bongiorno Pizzaria<br>Nota: 4.8</div>`)[0];
+                popup_682d5582e50e9160febab0332700ed53.setContent(html_032fbe29bfebd33614ff9473f8cadef3);
+            
+        
+
+        marker_02238efb087c27f25864300956d8be82.bindPopup(popup_682d5582e50e9160febab0332700ed53)
+        ;
+
+        
+    
+    
+            marker_02238efb087c27f25864300956d8be82.bindTooltip(
+                `<div>
+                     Bongiorno Pizzaria
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_02238efb087c27f25864300956d8be82.setIcon(icon_a5045a3a566fcc9621daca48c78fafc9);
+            
+    
+            var marker_84ee78fb91e70ee5fc5301d800985ca6 = L.marker(
+                [-23.62798330000001, -46.7029163],
+                {
+}
+            ).addTo(map_34f0b1c36166d6528f3529a3867eaa3d);
+        
+    
+            var icon_ca2f4375069abd838fe35d35aec0e077 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fdb343e417b3618c0c8fb1eb0f293525 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8d50e9e02afa07294f78969a1b59362f = $(`<div id="html_8d50e9e02afa07294f78969a1b59362f" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Veronasgrill Burger & Beer<br>Nota: 4.7</div>`)[0];
+                popup_fdb343e417b3618c0c8fb1eb0f293525.setContent(html_8d50e9e02afa07294f78969a1b59362f);
+            
+        
+
+        marker_84ee78fb91e70ee5fc5301d800985ca6.bindPopup(popup_fdb343e417b3618c0c8fb1eb0f293525)
+        ;
+
+        
+    
+    
+            marker_84ee78fb91e70ee5fc5301d800985ca6.bindTooltip(
+                `<div>
+                     Veronasgrill Burger & Beer
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_84ee78fb91e70ee5fc5301d800985ca6.setIcon(icon_ca2f4375069abd838fe35d35aec0e077);
+            
+    
+            var marker_ae63b4570aab2f5673a67d59629df3ae = L.marker(
+                [-23.6315121, -46.7066553],
+                {
+}
+            ).addTo(map_34f0b1c36166d6528f3529a3867eaa3d);
+        
+    
+            var icon_4fbb6e3aaba9a42837acf358a2a4420b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a3caafae13f48c125e1c7fc5c54d2104 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f3731bae1c037ef6d8445dc3bb4d4972 = $(`<div id="html_f3731bae1c037ef6d8445dc3bb4d4972" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>I Love Burger<br>Nota: 4.6</div>`)[0];
+                popup_a3caafae13f48c125e1c7fc5c54d2104.setContent(html_f3731bae1c037ef6d8445dc3bb4d4972);
+            
+        
+
+        marker_ae63b4570aab2f5673a67d59629df3ae.bindPopup(popup_a3caafae13f48c125e1c7fc5c54d2104)
+        ;
+
+        
+    
+    
+            marker_ae63b4570aab2f5673a67d59629df3ae.bindTooltip(
+                `<div>
+                     I Love Burger
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ae63b4570aab2f5673a67d59629df3ae.setIcon(icon_4fbb6e3aaba9a42837acf358a2a4420b);
+            
+    
+            var marker_4532ad958b602b5c0c31041898ad2a6c = L.marker(
+                [-23.631267, -46.70532559999999],
+                {
+}
+            ).addTo(map_34f0b1c36166d6528f3529a3867eaa3d);
+        
+    
+            var icon_60f29220ae7e012a6e1acbc2cc31e502 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6a66996bfdd390a5937765d753846c6f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_92eccd6d1dfe1006dc1cd64385fba95d = $(`<div id="html_92eccd6d1dfe1006dc1cd64385fba95d" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Kofi & Co - Café e Brunch<br>Nota: 4.6</div>`)[0];
+                popup_6a66996bfdd390a5937765d753846c6f.setContent(html_92eccd6d1dfe1006dc1cd64385fba95d);
+            
+        
+
+        marker_4532ad958b602b5c0c31041898ad2a6c.bindPopup(popup_6a66996bfdd390a5937765d753846c6f)
+        ;
+
+        
+    
+    
+            marker_4532ad958b602b5c0c31041898ad2a6c.bindTooltip(
+                `<div>
+                     Kofi & Co - Café e Brunch
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4532ad958b602b5c0c31041898ad2a6c.setIcon(icon_60f29220ae7e012a6e1acbc2cc31e502);
+            
+    
+            var marker_5cefc8fc9349f0ef9e40e93c9bff8a46 = L.marker(
+                [-23.6321744, -46.71004550000001],
+                {
+}
+            ).addTo(map_34f0b1c36166d6528f3529a3867eaa3d);
+        
+    
+            var icon_c63675e18be7c465ca8d3290b6e47d40 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_68f84c5b149b7c4b356e74bad9934156 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_14d7fe014bae0de08a2583aa957237f2 = $(`<div id="html_14d7fe014bae0de08a2583aa957237f2" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Jui Restaurante<br>Nota: 4.6</div>`)[0];
+                popup_68f84c5b149b7c4b356e74bad9934156.setContent(html_14d7fe014bae0de08a2583aa957237f2);
+            
+        
+
+        marker_5cefc8fc9349f0ef9e40e93c9bff8a46.bindPopup(popup_68f84c5b149b7c4b356e74bad9934156)
+        ;
+
+        
+    
+    
+            marker_5cefc8fc9349f0ef9e40e93c9bff8a46.bindTooltip(
+                `<div>
+                     Jui Restaurante
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5cefc8fc9349f0ef9e40e93c9bff8a46.setIcon(icon_c63675e18be7c465ca8d3290b6e47d40);
+            
+    
+            var marker_77896806408418fa9c58125b44b31e43 = L.marker(
+                [-23.6299543, -46.7059585],
+                {
+}
+            ).addTo(map_34f0b1c36166d6528f3529a3867eaa3d);
+        
+    
+            var icon_ac5ca7b6b8cb0fc3802982e77189a8fe = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0895d61c077d09280eab60b11040e0c7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_81f68cfdfa15e8c681b6162101106168 = $(`<div id="html_81f68cfdfa15e8c681b6162101106168" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Viareggio Ristorante<br>Nota: 4.5</div>`)[0];
+                popup_0895d61c077d09280eab60b11040e0c7.setContent(html_81f68cfdfa15e8c681b6162101106168);
+            
+        
+
+        marker_77896806408418fa9c58125b44b31e43.bindPopup(popup_0895d61c077d09280eab60b11040e0c7)
+        ;
+
+        
+    
+    
+            marker_77896806408418fa9c58125b44b31e43.bindTooltip(
+                `<div>
+                     Viareggio Ristorante
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_77896806408418fa9c58125b44b31e43.setIcon(icon_ac5ca7b6b8cb0fc3802982e77189a8fe);
+            
+    
+            var marker_8e6730d37e964ddd2d64c4c7bcd67750 = L.marker(
+                [-23.6300765, -46.70607889999999],
+                {
+}
+            ).addTo(map_34f0b1c36166d6528f3529a3867eaa3d);
+        
+    
+            var icon_e4d36cb9c33dc179e2f7fdab6db6d090 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_33d83e16558546d43b006f89dc680a35 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5db85fc4274d69b97de2a63eae66015b = $(`<div id="html_5db85fc4274d69b97de2a63eae66015b" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Tipo Prime Burger & Pizza<br>Nota: 4.5</div>`)[0];
+                popup_33d83e16558546d43b006f89dc680a35.setContent(html_5db85fc4274d69b97de2a63eae66015b);
+            
+        
+
+        marker_8e6730d37e964ddd2d64c4c7bcd67750.bindPopup(popup_33d83e16558546d43b006f89dc680a35)
+        ;
+
+        
+    
+    
+            marker_8e6730d37e964ddd2d64c4c7bcd67750.bindTooltip(
+                `<div>
+                     Tipo Prime Burger & Pizza
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8e6730d37e964ddd2d64c4c7bcd67750.setIcon(icon_e4d36cb9c33dc179e2f7fdab6db6d090);
+            
+    
+            var marker_0984da80367d675d254fe7774b98450d = L.marker(
+                [-23.6335999, -46.7046255],
+                {
+}
+            ).addTo(map_34f0b1c36166d6528f3529a3867eaa3d);
+        
+    
+            var icon_f2c403f0d193c94ebb41487fbde61846 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5a2433b9ccbcc401a48aecacec4724f1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ffa68ba6170ebd0310c082c955b353c3 = $(`<div id="html_ffa68ba6170ebd0310c082c955b353c3" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Sampa Burger<br>Nota: 4.4</div>`)[0];
+                popup_5a2433b9ccbcc401a48aecacec4724f1.setContent(html_ffa68ba6170ebd0310c082c955b353c3);
+            
+        
+
+        marker_0984da80367d675d254fe7774b98450d.bindPopup(popup_5a2433b9ccbcc401a48aecacec4724f1)
+        ;
+
+        
+    
+    
+            marker_0984da80367d675d254fe7774b98450d.bindTooltip(
+                `<div>
+                     Sampa Burger
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0984da80367d675d254fe7774b98450d.setIcon(icon_f2c403f0d193c94ebb41487fbde61846);
+            
+    
+            var marker_14bc58a3c8c5d4532f0f39d2cf9b0897 = L.marker(
+                [-23.6372629, -46.71190499999999],
+                {
+}
+            ).addTo(map_34f0b1c36166d6528f3529a3867eaa3d);
+        
+    
+            var icon_a69319508cf40e2ffb950e2eba046b59 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d9900ebd93c4bfc83faa5b9905d98a1d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6e73f97129cf04757ae02d2d0ebe461e = $(`<div id="html_6e73f97129cf04757ae02d2d0ebe461e" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Restaurante Massa Fina<br>Nota: 4.4</div>`)[0];
+                popup_d9900ebd93c4bfc83faa5b9905d98a1d.setContent(html_6e73f97129cf04757ae02d2d0ebe461e);
+            
+        
+
+        marker_14bc58a3c8c5d4532f0f39d2cf9b0897.bindPopup(popup_d9900ebd93c4bfc83faa5b9905d98a1d)
+        ;
+
+        
+    
+    
+            marker_14bc58a3c8c5d4532f0f39d2cf9b0897.bindTooltip(
+                `<div>
+                     Restaurante Massa Fina
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_14bc58a3c8c5d4532f0f39d2cf9b0897.setIcon(icon_a69319508cf40e2ffb950e2eba046b59);
+            
+    
+            var marker_f3acd16bc59e5f6e38b7e18b8a18eee4 = L.marker(
+                [-23.6318267, -46.7087547],
+                {
+}
+            ).addTo(map_34f0b1c36166d6528f3529a3867eaa3d);
+        
+    
+            var icon_2767eb453208523ff5c22a1c37e03fe2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8afc29eddef623aa1b4337bb4e4db7d3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_43ca2fba50376b25349cb67e40040a53 = $(`<div id="html_43ca2fba50376b25349cb67e40040a53" style="width: 100.0%; height: 100.0%;">Melhor Avaliado<br>Barakah Cozinha Árabe - Granja Julieta<br>Nota: 4.4</div>`)[0];
+                popup_8afc29eddef623aa1b4337bb4e4db7d3.setContent(html_43ca2fba50376b25349cb67e40040a53);
+            
+        
+
+        marker_f3acd16bc59e5f6e38b7e18b8a18eee4.bindPopup(popup_8afc29eddef623aa1b4337bb4e4db7d3)
+        ;
+
+        
+    
+    
+            marker_f3acd16bc59e5f6e38b7e18b8a18eee4.bindTooltip(
+                `<div>
+                     Barakah Cozinha Árabe - Granja Julieta
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f3acd16bc59e5f6e38b7e18b8a18eee4.setIcon(icon_2767eb453208523ff5c22a1c37e03fe2);
+            
+    
+            var marker_df75e659ceb38dbbdd41fa9149a7b381 = L.marker(
+                [-23.6284427, -46.70685520000001],
+                {
+}
+            ).addTo(map_34f0b1c36166d6528f3529a3867eaa3d);
+        
+    
+            var icon_e1d09a13f73e3cc01cf50f27165fc690 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a126f9c583067ad45191f31d277771cc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_dce2bbc305c2575d5f5d7e94b98f0a7f = $(`<div id="html_dce2bbc305c2575d5f5d7e94b98f0a7f" style="width: 100.0%; height: 100.0%;">Custo Benefício<br>Augustu's Bar<br>Nota: 4.6</div>`)[0];
+                popup_a126f9c583067ad45191f31d277771cc.setContent(html_dce2bbc305c2575d5f5d7e94b98f0a7f);
+            
+        
+
+        marker_df75e659ceb38dbbdd41fa9149a7b381.bindPopup(popup_a126f9c583067ad45191f31d277771cc)
+        ;
+
+        
+    
+    
+            marker_df75e659ceb38dbbdd41fa9149a7b381.bindTooltip(
+                `<div>
+                     Augustu's Bar
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_df75e659ceb38dbbdd41fa9149a7b381.setIcon(icon_e1d09a13f73e3cc01cf50f27165fc690);
+            
+    
+            var marker_798436e2e41fd0bbfd5847ae09cf92e6 = L.marker(
+                [-23.6305315, -46.7056115],
+                {
+}
+            ).addTo(map_34f0b1c36166d6528f3529a3867eaa3d);
+        
+    
+            var icon_d25eb16aaba7ac0ecc4e6fa2b0451e21 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7bb1aee5af7f828272d3d8cfa120295b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2fe443b67baa866d6eb484fd354f0bbb = $(`<div id="html_2fe443b67baa866d6eb484fd354f0bbb" style="width: 100.0%; height: 100.0%;">Custo Benefício<br>Galeto Carioca<br>Nota: 4.5</div>`)[0];
+                popup_7bb1aee5af7f828272d3d8cfa120295b.setContent(html_2fe443b67baa866d6eb484fd354f0bbb);
+            
+        
+
+        marker_798436e2e41fd0bbfd5847ae09cf92e6.bindPopup(popup_7bb1aee5af7f828272d3d8cfa120295b)
+        ;
+
+        
+    
+    
+            marker_798436e2e41fd0bbfd5847ae09cf92e6.bindTooltip(
+                `<div>
+                     Galeto Carioca
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_798436e2e41fd0bbfd5847ae09cf92e6.setIcon(icon_d25eb16aaba7ac0ecc4e6fa2b0451e21);
+            
+    
+            var marker_800010ea47d56d33e0cab3a11dba8b52 = L.marker(
+                [-23.6304111, -46.70506739999999],
+                {
+}
+            ).addTo(map_34f0b1c36166d6528f3529a3867eaa3d);
+        
+    
+            var icon_1a155728136444285c4e52571d70032c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0c9178cd59adace31ef29cbfe280c503 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ed46f5533377c543f1b8fabae8411f0e = $(`<div id="html_ed46f5533377c543f1b8fabae8411f0e" style="width: 100.0%; height: 100.0%;">Custo Benefício<br>Cantina Veneta<br>Nota: 4.4</div>`)[0];
+                popup_0c9178cd59adace31ef29cbfe280c503.setContent(html_ed46f5533377c543f1b8fabae8411f0e);
+            
+        
+
+        marker_800010ea47d56d33e0cab3a11dba8b52.bindPopup(popup_0c9178cd59adace31ef29cbfe280c503)
+        ;
+
+        
+    
+    
+            marker_800010ea47d56d33e0cab3a11dba8b52.bindTooltip(
+                `<div>
+                     Cantina Veneta
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_800010ea47d56d33e0cab3a11dba8b52.setIcon(icon_1a155728136444285c4e52571d70032c);
+            
+    
+            var marker_e90a4d3807e1def539e7c6fd2507a51b = L.marker(
+                [-23.6320524, -46.7061741],
+                {
+}
+            ).addTo(map_34f0b1c36166d6528f3529a3867eaa3d);
+        
+    
+            var icon_aa56c0ca023c01c0b59f83294c4e3148 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0fd2f78896bbe2b3458a56bd0b613c2a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9a89f610ca67c415cec47b35e2919ebf = $(`<div id="html_9a89f610ca67c415cec47b35e2919ebf" style="width: 100.0%; height: 100.0%;">Custo Benefício<br>Lanchonete e Restaurante Recanto Chácara<br>Nota: 4.4</div>`)[0];
+                popup_0fd2f78896bbe2b3458a56bd0b613c2a.setContent(html_9a89f610ca67c415cec47b35e2919ebf);
+            
+        
+
+        marker_e90a4d3807e1def539e7c6fd2507a51b.bindPopup(popup_0fd2f78896bbe2b3458a56bd0b613c2a)
+        ;
+
+        
+    
+    
+            marker_e90a4d3807e1def539e7c6fd2507a51b.bindTooltip(
+                `<div>
+                     Lanchonete e Restaurante Recanto Chácara
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e90a4d3807e1def539e7c6fd2507a51b.setIcon(icon_aa56c0ca023c01c0b59f83294c4e3148);
+            
+    
+            var marker_33049ef6b5b2bf1fd19d36cfd70bba7a = L.marker(
+                [-23.6323369, -46.70699159999999],
+                {
+}
+            ).addTo(map_34f0b1c36166d6528f3529a3867eaa3d);
+        
+    
+            var icon_6bb696aa777261314bdd90bd963afd0f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0d0868327522b0e73999af0893f0a4d6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0d6bd52a8467bf2a64aa1a740b2fe4c4 = $(`<div id="html_0d6bd52a8467bf2a64aa1a740b2fe4c4" style="width: 100.0%; height: 100.0%;">Custo Benefício<br>SABOR DA VERBO RESTAURANTE<br>Nota: 4.3</div>`)[0];
+                popup_0d0868327522b0e73999af0893f0a4d6.setContent(html_0d6bd52a8467bf2a64aa1a740b2fe4c4);
+            
+        
+
+        marker_33049ef6b5b2bf1fd19d36cfd70bba7a.bindPopup(popup_0d0868327522b0e73999af0893f0a4d6)
+        ;
+
+        
+    
+    
+            marker_33049ef6b5b2bf1fd19d36cfd70bba7a.bindTooltip(
+                `<div>
+                     SABOR DA VERBO RESTAURANTE
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_33049ef6b5b2bf1fd19d36cfd70bba7a.setIcon(icon_6bb696aa777261314bdd90bd963afd0f);
+            
+    
+            var marker_fd9850eab685749802c0b1d621df40b3 = L.marker(
+                [-23.6309411, -46.7060333],
+                {
+}
+            ).addTo(map_34f0b1c36166d6528f3529a3867eaa3d);
+        
+    
+            var icon_5c51748cadc82d9188feb520326676f2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bdb6610a3f5881aeebf002c115c75c38 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0164542d5b56ca4e425ff805d791535f = $(`<div id="html_0164542d5b56ca4e425ff805d791535f" style="width: 100.0%; height: 100.0%;">Custo Benefício<br>Restaurante Via Piave<br>Nota: 4.3</div>`)[0];
+                popup_bdb6610a3f5881aeebf002c115c75c38.setContent(html_0164542d5b56ca4e425ff805d791535f);
+            
+        
+
+        marker_fd9850eab685749802c0b1d621df40b3.bindPopup(popup_bdb6610a3f5881aeebf002c115c75c38)
+        ;
+
+        
+    
+    
+            marker_fd9850eab685749802c0b1d621df40b3.bindTooltip(
+                `<div>
+                     Restaurante Via Piave
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_fd9850eab685749802c0b1d621df40b3.setIcon(icon_5c51748cadc82d9188feb520326676f2);
+            
+    
+            var marker_8f22c8db359c9bf993f0360ed36bfd2c = L.marker(
+                [-23.6322178, -46.70584179999999],
+                {
+}
+            ).addTo(map_34f0b1c36166d6528f3529a3867eaa3d);
+        
+    
+            var icon_6126b364818e02ffa54b3d39cea4d506 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_592b9854e833d304a0dcf0002b410848 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1f74bdca118fed3bd61f263c9d4a80ec = $(`<div id="html_1f74bdca118fed3bd61f263c9d4a80ec" style="width: 100.0%; height: 100.0%;">Custo Benefício<br>iBurger<br>Nota: 4.3</div>`)[0];
+                popup_592b9854e833d304a0dcf0002b410848.setContent(html_1f74bdca118fed3bd61f263c9d4a80ec);
+            
+        
+
+        marker_8f22c8db359c9bf993f0360ed36bfd2c.bindPopup(popup_592b9854e833d304a0dcf0002b410848)
+        ;
+
+        
+    
+    
+            marker_8f22c8db359c9bf993f0360ed36bfd2c.bindTooltip(
+                `<div>
+                     iBurger
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8f22c8db359c9bf993f0360ed36bfd2c.setIcon(icon_6126b364818e02ffa54b3d39cea4d506);
+            
+    
+            var marker_f30ff1acac5d7767b54bba474a20fb5c = L.marker(
+                [-23.6316238, -46.7047872],
+                {
+}
+            ).addTo(map_34f0b1c36166d6528f3529a3867eaa3d);
+        
+    
+            var icon_d05a560334c961577a2a8f4f8e811fff = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_dc9c2ee859998a93d4fba671134fea1d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5249715a0cbe113314827c271965898c = $(`<div id="html_5249715a0cbe113314827c271965898c" style="width: 100.0%; height: 100.0%;">Custo Benefício<br>Domino's Pizza - Chácara Santo Antônio<br>Nota: 4.3</div>`)[0];
+                popup_dc9c2ee859998a93d4fba671134fea1d.setContent(html_5249715a0cbe113314827c271965898c);
+            
+        
+
+        marker_f30ff1acac5d7767b54bba474a20fb5c.bindPopup(popup_dc9c2ee859998a93d4fba671134fea1d)
+        ;
+
+        
+    
+    
+            marker_f30ff1acac5d7767b54bba474a20fb5c.bindTooltip(
+                `<div>
+                     Domino's Pizza - Chácara Santo Antônio
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f30ff1acac5d7767b54bba474a20fb5c.setIcon(icon_d05a560334c961577a2a8f4f8e811fff);
+            
+    
+            var marker_89e763150d805c71fc09d0628c5a7a12 = L.marker(
+                [-23.6315371, -46.70917559999999],
+                {
+}
+            ).addTo(map_34f0b1c36166d6528f3529a3867eaa3d);
+        
+    
+            var icon_f9c5d784e638b5a5b831a431bb89c962 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_134b720f55aae2efb7f6a6639f184242 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_523b2daedc22ef98323f0d10f1ecc9c5 = $(`<div id="html_523b2daedc22ef98323f0d10f1ecc9c5" style="width: 100.0%; height: 100.0%;">Custo Benefício<br>Accanto restaurant<br>Nota: 4.3</div>`)[0];
+                popup_134b720f55aae2efb7f6a6639f184242.setContent(html_523b2daedc22ef98323f0d10f1ecc9c5);
+            
+        
+
+        marker_89e763150d805c71fc09d0628c5a7a12.bindPopup(popup_134b720f55aae2efb7f6a6639f184242)
+        ;
+
+        
+    
+    
+            marker_89e763150d805c71fc09d0628c5a7a12.bindTooltip(
+                `<div>
+                     Accanto restaurant
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_89e763150d805c71fc09d0628c5a7a12.setIcon(icon_f9c5d784e638b5a5b831a431bb89c962);
+            
+    
+            var marker_17824f20bd245e8c55226cc179ac7805 = L.marker(
+                [-23.630419, -46.70690200000001],
+                {
+}
+            ).addTo(map_34f0b1c36166d6528f3529a3867eaa3d);
+        
+    
+            var icon_982f44a59fe57eb9186d719219f6d774 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b3e25b0bfcbea7058db419ea0c792daa = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_48fc20a849e3139417a71fb96c98a15a = $(`<div id="html_48fc20a849e3139417a71fb96c98a15a" style="width: 100.0%; height: 100.0%;">Custo Benefício<br>Service Boi<br>Nota: 4.3</div>`)[0];
+                popup_b3e25b0bfcbea7058db419ea0c792daa.setContent(html_48fc20a849e3139417a71fb96c98a15a);
+            
+        
+
+        marker_17824f20bd245e8c55226cc179ac7805.bindPopup(popup_b3e25b0bfcbea7058db419ea0c792daa)
+        ;
+
+        
+    
+    
+            marker_17824f20bd245e8c55226cc179ac7805.bindTooltip(
+                `<div>
+                     Service Boi
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_17824f20bd245e8c55226cc179ac7805.setIcon(icon_982f44a59fe57eb9186d719219f6d774);
+            
+    
+            map_34f0b1c36166d6528f3529a3867eaa3d.fitBounds(
+                [[-23.629853, -46.708291], [-23.6324544, -46.71015949999999], [-23.62798330000001, -46.7029163], [-23.6315121, -46.7066553], [-23.631267, -46.70532559999999], [-23.6321744, -46.71004550000001], [-23.6299543, -46.7059585], [-23.6300765, -46.70607889999999], [-23.6335999, -46.7046255], [-23.6372629, -46.71190499999999], [-23.6318267, -46.7087547], [-23.6284427, -46.70685520000001], [-23.6305315, -46.7056115], [-23.6304111, -46.70506739999999], [-23.6320524, -46.7061741], [-23.6323369, -46.70699159999999], [-23.6309411, -46.7060333], [-23.6322178, -46.70584179999999], [-23.6316238, -46.7047872], [-23.6315371, -46.70917559999999], [-23.630419, -46.70690200000001]],
+                {}
+            );
+        
+</script>
+</html>
