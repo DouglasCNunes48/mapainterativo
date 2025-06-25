@@ -8,6 +8,7 @@ from fastapi import FastAPI, Query, HTTPException
 from pydantic import BaseModel
 import mapa_gerador
 from datetime import datetime
+from fastapi.responses import RedirectResponse
 
 app = FastAPI()
 
@@ -67,10 +68,9 @@ def gerar_get(imovel: str = Query(...),
         mapa_gerador.gerar_mapa_html(imovel, latitude, longitude, melhores, custo_beneficio, nome_arquivo)
         arquivo_publicado = mapa_gerador.publicar_no_github(nome_arquivo)
 
-        return {
-            "mensagem": "Mapa publicado com sucesso!",
-            "url": f"https://douglascnunes48.github.io/mapainterativo/{arquivo_publicado}"
-        }
+        url_publico = f"https://douglascnunes48.github.io/mapainterativo/{arquivo_publicado}"
+        print(f"[INFO] Redirecionando para: {url_publico}")
+        return RedirectResponse(url=url_publico, status_code=302)
 
     except Exception as e:
         print(f"[ERRO] Erro no GET /gerar_mapa: {e}")
